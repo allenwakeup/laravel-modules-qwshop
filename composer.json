@@ -1,0 +1,75 @@
+{
+    "name": "goodcatch/laravel-modules-qwshop",
+    "description": "publish qwshop resources",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "allen",
+            "email": "ali@goodcatch.cn",
+            "homepage": "https://www.goodcatch.cn/laravel-modules-qwshop",
+            "role": "Developer"
+        }
+    ],
+
+    "require": {
+        "php": ">=7.2.5",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "illuminate/support": "^6.0",
+        "laravel/framework": "^6.0",
+        "elendev/nexus-composer-push": "^0.2.2",
+        "laravel/helpers": "^1.1",
+        "laravel/laravel": "^6.0",
+        "goodcatch/laravel-modules": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Goodcatch\\Modules\\": "src"
+
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Goodcatch\\Modules\\Qwshop\\Providers\\QwshopServiceProvider"
+            ],
+            "aliases": {
+
+            },
+            "dont-discover": [
+
+            ]
+
+        },
+        "nexus-push": {
+            "url": "https://repos.goodcatch.cn/repository/composer",
+            "ignore-by-git-attributes": true,
+            "ignore": [
+                "test.php",
+                "auth.json",
+                "composer.lock",
+                ".gitignore",
+                ".git",
+                ".DS_Store",
+                ".idea/",
+                "/vendor"
+            ]
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repos.goodcatch.cn/repository/goodcatch-composer-group/"
+        },
+        {
+            "packagist.org": false
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

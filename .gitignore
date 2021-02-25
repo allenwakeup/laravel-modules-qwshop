@@ -1,0 +1,9 @@
+.DS_Store
+/.idea
+/vendor
+composer.phar
+composer.lock
+phpunit.phar
+*.project
+tmp/
+/auth.json
