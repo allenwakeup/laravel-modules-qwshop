@@ -36,15 +36,11 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Goodcatch\\Modules\\Qwshop\\Providers\\QwshopServiceProvider"
             ],
             "aliases": {
-
             },
             "dont-discover": [
-
             ]
-
         },
         "nexus-push": {
             "url": "https://repos.goodcatch.cn/repository/composer",
