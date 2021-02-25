@@ -35,7 +35,7 @@ class ResourcesServiceProvider extends ServiceProvider
             $this->publishes ([
 
 
-            ], 'goodcatch-modules-qwshop');
+            ], 'goodcatch-modules');
         }
     }
 

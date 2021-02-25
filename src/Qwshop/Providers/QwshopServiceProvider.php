@@ -31,8 +31,7 @@ class QwshopServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $integration = Str::lower (trim($this->app ['config']->get('modules.integration', '')));
-        if (strcmp ($integration, 'qwshop'))
+        if (strcmp(module_integration(), 'lightcms') === 0)
         {
             $this->app->register(RouteServiceProvider::class);
             $this->app->register(ResourcesServiceProvider::class);
