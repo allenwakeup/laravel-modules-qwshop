@@ -51,22 +51,32 @@ class PermissionTableSeeder extends Seeder
     {
         $t_permission_groups = DB::table(self::TB_PERMISSION_GROUP);
         $t_permissions = DB::table(self::TB_PERMISSIONS);
-        $t_menus = DB::table(self::TB_MENUS);
-        $t_role_menus = DB::table(self::TB_ROLE_MENUS);
-        $t_role_permissions = DB::table(self::TB_ROLE_PERMISSIONS);
 
-        \collect(self::API_GROUPS)->each(function ($resources, $group) use ($t_permission_groups, $t_permissions) {
+        \collect(self::API_GROUPS)->each(function ($resources, $group) use ($t_permission_groups, $t_permissions){
             $permission_group = $t_permission_groups->where('name', $group)->first();
             $group_id = isset($permission_group)
                 ? $permission_group->id
                 : $t_permission_groups->insertGetId(['name' => $group]);
-            \collect($resources)->each(function($resource) use($t_permissions, $group_id) {
+            \collect($resources)->each(function($resource) use($t_permissions, $group_id){
                 \collect (self::API_RESOURCE_ACTIONS)->each(function ($data, $action) use ($resource, $t_permissions, $group_id) {
+                    $apis = $resource . '.' . $action;
                     $t_permissions->updateOrInsert([
-                        'apis' => $resource . '.' . $action,
+                        'apis' => $apis,
                         'pid' => $group_id
                     ], $data);
+                    $this->addRolePermissions(
+                        self::ROLE_ADMIN_ID,
+                        $t_permissions
+                            ->where('apis', $apis)
+                            ->where('pid', $group_id)
+                            ->first()
+                    );
                 });
+                $this->addMenu(
+                    0,
+                    $t_permissions->where('pid', $group_id)->get()->items(),
+                    DB::table(self::TB_MENUS)
+                );
             });
         });
     }
@@ -74,19 +84,41 @@ class PermissionTableSeeder extends Seeder
     private function addMenu($pid = 0, $menus = [], \Illuminate\Database\Query\Builder $query){
         if(count($menus) > 0){
             foreach($menus as $k => $menu){
+                $name = Arr::get($menu, 'name');
+                $link = Arr::get($menu, 'link', '#');
                 $query->updateOrInsert([
-                    'name' => Arr::get($menu, 'name'),
-                    'link' => Arr::get($menu, 'link', '#'),
+                    'name' => $name,
+                    'link' => $link,
                     'pid' => $pid,
                 ],[
                     'is_type' => 0,
                     'is_sort' => 0
                 ]);
                 $children = Arr::get($menu, 'children', []);
-                if(!empty($children)){
+                $created = $query->where('name', $name)->where('pid', $pid)->where('link', $link)->first();
+                if(empty($children)){
+                    $this->addRoleMenus(self::ROLE_ADMIN_ID, $created);
+                }else{
 
+                    $this->addMenu ($created->id, $children, $query);
                 }
             }
         }
+    }
+
+    private function addRoleMenus($role_id, $menu){
+        $t_role_menus = DB::table(self::TB_ROLE_MENUS);
+        $t_role_menus->insert([
+            'role_id' => $role_id,
+            'menu_id' => $menu->id
+        ]);
+    }
+
+    private function addRolePermissions($role_id, $permission){
+        $t_role_permissions = DB::table(self::TB_ROLE_PERMISSIONS);
+        $t_role_permissions->insert([
+           'role_id' => $role_id,
+           'permission_id' => $permission->id
+        ]);
     }
 }
