@@ -1,0 +1,15 @@
+{
+    "name": "Qwshop",
+    "alias": "qwshop",
+    "description": "",
+    "keywords": [],
+    "order": 0,
+    "providers": [
+        "Goodcatch\\Modules\\Qwshop\\Providers\\QwshopServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "app/helpers.php"
+    ],
+    "requires": []
+}

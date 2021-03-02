@@ -3,7 +3,6 @@
 namespace Goodcatch\Modules\Qwshop\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Str;
 
 /**
  * Class LightcmsServiceProvider
@@ -22,6 +21,7 @@ class QwshopServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->registerTranslations();
     }
 
     /**
@@ -31,11 +31,23 @@ class QwshopServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (strcmp(module_integration(), 'qwshop') === 0)
-        {
-            $this->app->register(RouteServiceProvider::class);
-            $this->app->register(ResourcesServiceProvider::class);
-        }
+        $this->app->register(RouteServiceProvider::class);
+        $this->app->register(ResourcesServiceProvider::class);
+    }
+
+
+
+    /**
+     * Register translations.
+     *
+     * @return void
+     */
+    public function registerTranslations()
+    {
+        $this->loadTranslationsFrom(
+            goodcatch_vendor_path('/laravel-modules-qwshop/resources/lang'),
+            'laravel-modules'
+        );
     }
 
 

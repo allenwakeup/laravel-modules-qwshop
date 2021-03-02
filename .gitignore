@@ -7,3 +7,7 @@ phpunit.phar
 *.project
 tmp/
 /auth.json
+/public
+/package.json
+/webpack.mix.js
+.phpunit.result.cache

@@ -22,27 +22,15 @@
         "laravel/framework": "^6.0",
         "elendev/nexus-composer-push": "^0.2.2",
         "laravel/helpers": "^1.1",
-        "laravel/laravel": "^6.0"
+        "laravel/laravel": "^6.0",
+        "phpunit/phpunit": "^8.5"
     },
     "autoload": {
         "psr-4": {
-            "Goodcatch\\Modules\\": "src"
-
-        },
-        "files": [
-            "src/helpers.php"
-        ]
+            "Goodcatch\\Modules\\Qwshop\\": "app"
+        }
     },
     "extra": {
-        "laravel": {
-            "providers": [
-                "Goodcatch\\Modules\\Qwshop\\Providers\\QwshopServiceProvider"
-            ],
-            "aliases": {
-            },
-            "dont-discover": [
-            ]
-        },
         "nexus-push": {
             "url": "https://repos.goodcatch.cn/repository/composer",
             "ignore-by-git-attributes": true,

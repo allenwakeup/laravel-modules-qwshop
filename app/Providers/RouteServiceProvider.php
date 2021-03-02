@@ -8,19 +8,16 @@ namespace Goodcatch\Modules\Qwshop\Providers;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Illuminate\Support\Str;
 
 class RouteServiceProvider extends ServiceProvider
 {
+    protected $namespace = 'Goodcatch\\Modules\\Qwshop\\Http\\Controllers\\';
+
     protected $path;
 
     protected $config;
 
     protected $prefix;
-
-    protected $frontendNamespace;
-
-    protected $backendNamespace;
 
     protected $apiNamespace;
 
@@ -42,11 +39,7 @@ class RouteServiceProvider extends ServiceProvider
 
     protected function initRoute ()
     {
-        $this->path = goodcatch_vendor_path ('/laravel-modules-qwshop/src/routes');
-        $this->prefix =$this->getModuleConfig ('route.prefix', 'm');
-        $this->frontendNamespace = $this->getModuleConfig ('route.frontend.namespace', 'Http\\Controllers\\Front');
-        $this->backendNamespace = $this->getModuleConfig ('route.backend.namespace', 'Http\\Controllers\\Admin');
-        $this->apiNamespace = $this->getModuleConfig ('route.api.namespace', 'Http\\Controllers\\Api');
+        $this->path = goodcatch_vendor_path ('/laravel-modules-qwshop/routes');
     }
 
     protected function getModuleConfig ($key, $default)
@@ -70,25 +63,41 @@ class RouteServiceProvider extends ServiceProvider
     {
 
 
-        $this->mapRoutes();
+        $this->mapApiRoutes();
+        // $this->mapWebRoutes();
 
     }
 
 
     /**
-     * Define the "admin" routes for the application.
+     * Define the "web" routes for the application.
      *
      * These routes all receive session state, CSRF protection, etc.
      *
      * @return void
      */
-    protected function mapRoutes ()
+    protected function mapWebRoutes ()
     {
-        if (app ()->has ('laravellocalization')) {
+        Route::prefix ('goodcatch')
+            ->middleware ('web')
+            ->namespace ($this->namespace)
+            ->group ($this->getPath ('web'));
 
+    }
 
-        }
-
+    /**
+     * Define the "api" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapApiRoutes ()
+    {
+        Route::prefix ('api')
+            ->middleware ('api')
+            ->namespace ($this->namespace . $this->apiNamespace)
+            ->group ($this->getPath ('api'));
     }
 
 }
