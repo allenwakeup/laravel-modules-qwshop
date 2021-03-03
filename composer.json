@@ -28,7 +28,20 @@
     "autoload": {
         "psr-4": {
             "Goodcatch\\Modules\\Qwshop\\": "app"
+        },
+        "classmap": [
+            "database/seeds"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
         }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
     },
     "extra": {
         "nexus-push": {
