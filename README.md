@@ -11,6 +11,12 @@ With help of package [allenwakeup/laravel-modules](https://github.com/allenwakeu
     
 ## Installation
 
+To install through Composer, by run the following command:
+
+```shell script
+composer require goodcatch/laravel-modules-qwshop
+```
+
 ### migration
 
 ```shell script
