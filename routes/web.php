@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::get('/laravel-modules', 'ModuleController@index')->name('laravel-modules.qwshop');
+Route::get('/{any}', 'SpaController@index')->where('any', '^((?!\/goodcatch\/).)*$');
 // Route::get('/', function () {
 //     return view('welcome');
 // });

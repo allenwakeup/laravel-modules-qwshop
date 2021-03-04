@@ -33,7 +33,8 @@ class ResourcesServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole ()) {
             $src = goodcatch_vendor_path ('/laravel-modules-qwshop');
             $this->publishes ([
-                $src . '/resources' =>  resource_path()
+                $src . '/resources' =>  resource_path(),
+                $src . 'routes/web.php' => base_path('routes/web.php')
             ], 'goodcatch-modules-qwshop');
         }
     }

@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace Goodcatch\Modules\Qwshop\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Admin\UserResource\UserCollection;
 use Goodcatch\Modules\Laravel\Model\Module;
 use Goodcatch\Modules\Qwshop\Http\Resources\Admin\ModuleResource\ModuleCollection;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class ModuleController extends Controller
 {

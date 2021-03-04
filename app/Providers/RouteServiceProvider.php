@@ -19,8 +19,6 @@ class RouteServiceProvider extends ServiceProvider
 
     protected $prefix;
 
-    protected $apiNamespace;
-
     /**
      * Create a new service provider instance.
      *
@@ -61,28 +59,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map ()
     {
-
-
         $this->mapApiRoutes();
-        // $this->mapWebRoutes();
-
-    }
-
-
-    /**
-     * Define the "web" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
-    protected function mapWebRoutes ()
-    {
-        Route::prefix ('goodcatch')
-            ->middleware ('web')
-            ->namespace ($this->namespace)
-            ->group ($this->getPath ('web'));
-
     }
 
     /**
@@ -96,7 +73,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::prefix ('api')
             ->middleware ('api')
-            ->namespace ($this->namespace . $this->apiNamespace)
+            ->namespace ($this->namespace)
             ->group ($this->getPath ('api'));
     }
 
