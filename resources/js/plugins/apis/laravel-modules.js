@@ -5,6 +5,6 @@ export default {
      * 模块化接口
      */
 
-    "laravelModulesModule": baseUrl + "Admin/laravel-modules", // 模块化
+    "laravelModulesModule": baseUrl + "laravel-modules/admin/modules", // 模块化
 
 }

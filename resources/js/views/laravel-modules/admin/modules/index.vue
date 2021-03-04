@@ -4,13 +4,13 @@
         <div class="unline underm"></div>
 
         <div class="admin_table_handle_btn">
-            <a-button @click="$router.push('/Admin/users/form')" type="primary" icon="plus">添加</a-button>
+            <a-button @click="$router.push('/laravel-modules/admin/modules/form')" type="primary" icon="plus">添加</a-button>
             <a-button class="admin_delete_btn" type="danger" icon="delete" @click="del">批量删除</a-button>
         </div>
         <div class="admin_table_list">
             <a-table :columns="columns" :data-source="list" :pagination="false" :row-selection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange }" row-key="id">
                 <span slot="action" slot-scope="rows">
-                    <a-button icon="edit" @click="$router.push('/Admin/users/form/'+rows.id)">编辑</a-button>
+                    <a-button icon="edit" @click="$router.push('/laravel-modules/admin/modules/form/'+rows.id)">编辑</a-button>
                 </span>
             </a-table>
             <div class="admin_pagination" v-if="total>0">
@@ -34,13 +34,17 @@ export default {
           selectedRowKeys:[], // 被选择的行
           columns:[
               {title:'#',dataIndex:'id',fixed:'left'},
-              {title:'昵称',dataIndex:'nickname'},
-              {title:'手机',dataIndex:'phone'},
-              {title:'用户名',dataIndex:'username'},
-              {title:'登陆IP',dataIndex:'ip'},
-              {title:'登陆时间',dataIndex:'login_time'},
-              {title:'上次登陆',dataIndex:'last_login_time'},
+              {title:'名称',dataIndex:'name'},
+              {title:'别名',dataIndex:'alias'},
+              {title:'描述',dataIndex:'description'},
+              {title:'优先级',dataIndex:'priority'},
+              {title:'版本号',dataIndex:'version'},
+              {title:'安装路径',dataIndex:'path'},
+              {title:'类型',dataIndex:'type'},
+              {title:'排序',dataIndex:'sort'},
+              {title:'状态',dataIndex:'status'},
               {title:'创建时间',dataIndex:'created_at'},
+              {title:'更新时间',dataIndex:'updated_at'},
               {title:'操作',key:'id',fixed:'right',scopedSlots: { customRender: 'action' }},
           ],
           list:[],
@@ -70,7 +74,7 @@ export default {
                 cancelText: '取消',
                 onOk:()=> {
                     let ids = this.selectedRowKeys.join(',');
-                    this.$delete(this.$api.adminUsers+'/'+ids).then(res=>{
+                    this.$delete(this.$api.laravelModulesModule+'/'+ids).then(res=>{
                         if(res.code == 200){
                             this.onload();
                             this.$message.success('删除成功');
@@ -84,7 +88,7 @@ export default {
         },
 
         onload(){
-            this.$get(this.$api.adminUsers,this.params).then(res=>{
+            this.$get(this.$api.laravelModulesModule,this.params).then(res=>{
                 this.total = res.data.total;
                 this.list = res.data.data;
             });
