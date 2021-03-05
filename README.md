@@ -27,13 +27,18 @@ php artisan migrate
 php artisan goodcatch:cache
 ```
 
+### seed
+
+```shell script
+php artisan goodcatch:seed qwshop
+```
 
 ### publish files
 
 just following commands.
 
 ```shell script
-php artisan vendor:publish --tag=goodcatch-modules-qwshop
+php artisan vendor:publish --tag=goodcatch-modules-qwshop --force
 ```
 
 **note:** make qwshop project clean and then publish files.

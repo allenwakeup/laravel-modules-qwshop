@@ -16,7 +16,7 @@ class PermissionTableSeeder extends Seeder
                 'children' => [
                     [
                         'name' => '模块管理',
-                        'link' => $this->getSeedsApiUri('/modules'),
+                        'link' => $this->getSeedsApiUri('modules'),
                     ]
                 ]
             ]

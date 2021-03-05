@@ -49,7 +49,7 @@ export default {
                 return this.$message.error('别名不能为空');
             }
 
-            let api = this.$apiHandle(this.$api.laravelModulesModule,this.id);
+            let api = this.$apiHandle(this.$api.goodcatchModule,this.id);
             if(api.status){
                 this.$put(api.url,this.info).then(res=>{
                     if(res.code == 200){
@@ -73,7 +73,7 @@ export default {
 
         },
         get_info(){
-            this.$get(this.$api.laravelModulesModule+'/'+this.id).then(res=>{
+            this.$get(this.$api.goodcatchModule+'/'+this.id).then(res=>{
                 this.info = res.data;
             })
         },
