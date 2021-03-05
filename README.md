@@ -54,3 +54,8 @@ or
 yarn run dev
 ```
 
+### others
+
+* add menu, role menu mapping, permission, role permission mapping
+
+checkout [permission seeder](https://github.com/allenwakeup/laravel-modules-qwshop/blob/master/database/seeds/PermissionTableSeeder.php)
