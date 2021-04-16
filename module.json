@@ -11,5 +11,7 @@
     "files": [
         "app/helpers.php"
     ],
-    "requires": []
+    "requires": [],
+    "version": "dev-master",
+    "type": 0
 }

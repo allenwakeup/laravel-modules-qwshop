@@ -26,7 +26,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Goodcatch\\Modules\\Qwshop\\": "app"
+            "Goodcatch\\Modules\\Qwshop\\": "src"
         },
         "classmap": [
             "database/seeds"
