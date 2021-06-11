@@ -31,11 +31,11 @@ class ResourcesServiceProvider extends ServiceProvider
     public function registerViews ()
     {
         if ($this->app->runningInConsole ()) {
-            $src = goodcatch_vendor_path ('/laravel-modules-qwshop');
+            $src = __DIR__ . '/../..';
             $this->publishes ([
-                $src . '/resources' =>  resource_path(),
+                $src . '/resources/js' =>  resource_path('js'),
                 $src . '/routes/web.php' => base_path('routes/web.php')
-            ], 'goodcatch-modules-qwshop');
+            ], 'laravel-modules');
         }
     }
 

@@ -45,7 +45,7 @@ class QwshopServiceProvider extends ServiceProvider
     public function registerTranslations()
     {
         $this->loadTranslationsFrom(
-            goodcatch_vendor_path('/laravel-modules-qwshop/resources/lang'),
+            __DIR__ . '/../../resources/lang',
             'laravel-modules'
         );
     }

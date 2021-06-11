@@ -13,16 +13,16 @@
     ],
 
     "require": {
-        "php": ">=7.2.5",
+        "php": ">=7.3",
         "ext-json": "*",
-        "goodcatch/laravel-modules": "dev-master"
+        "goodcatch/laravel-modules": "^0.1.0"
     },
     "require-dev": {
-        "illuminate/support": "^6.0",
-        "laravel/framework": "^6.0",
+        "elendev/nexus-composer-push": "^0.4.0",
+        "illuminate/support": "^8.0",
+        "laravel/framework": "^8.0",
         "laravel/helpers": "^1.1",
-        "laravel/laravel": "^6.0",
-        "phpunit/phpunit": "^8.5"
+        "phpunit/phpunit": "^9.0"
     },
     "autoload": {
         "psr-4": {
@@ -37,11 +37,34 @@
             "Tests\\": "tests/"
         }
     },
+    "extra": {
+        "nexus-push": {
+            "url": "https://repos.goodcatch.cn/repository/composer",
+            "ignore-by-git-attributes": true,
+            "ignore": [
+                "test.php",
+                "auth.json",
+                ".git",
+                ".DS_Store",
+                ".idea/",
+                "/vendor"
+            ]
+        }
+    },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repos.goodcatch.cn/repository/goodcatch-composer-group/"
+        },
+        {
+            "packagist.org": false
+        }
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true
 }

@@ -5,19 +5,14 @@
 
 namespace Goodcatch\Modules\Qwshop\Providers;
 
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Goodcatch\Modules\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
 {
     protected $namespace = 'Goodcatch\\Modules\\Qwshop\\Http\\Controllers\\';
 
     protected $path;
-
-    protected $config;
-
-    protected $prefix;
 
     /**
      * Create a new service provider instance.
@@ -29,27 +24,14 @@ class RouteServiceProvider extends ServiceProvider
     {
         parent::__construct ($app);
 
-        $this->config = $this->app ['config']->get ('modules', []);
+        $this->path = __DIR__ . '/../../routes';
 
-        $this->initRoute ();
-
-    }
-
-    protected function initRoute ()
-    {
-        $this->path = goodcatch_vendor_path ('/laravel-modules-qwshop/routes');
-    }
-
-    protected function getModuleConfig ($key, $default)
-    {
-        return Arr::get ($this->config, $key, $default);
     }
 
     protected function getPath ($name = null)
     {
         return $this->path . '/' . (isset ($name) ? $name : 'web') . '.php';
     }
-
 
 
     /**

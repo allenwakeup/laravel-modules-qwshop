@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('goodcatch')->group(function(){
-    Route::namespace('Admin')->prefix('admin')->group(function(){
+Route::prefix('Admin')->group(function(){
+    Route::namespace('Admin')->prefix('goodcatch')->group(function(){
         Route::group(['middleware'=>'jwt.admin'], function(){
             Route::apiResources([
                 'modules'=>'ModuleController', // 系统模块化
@@ -29,7 +29,7 @@ Route::prefix('goodcatch')->group(function(){
      * 商城商家后台 路由
      *
      */
-    Route::namespace('Seller')->prefix('Seller')->group(function(){
+    Route::prefix('Seller')->namespace('Seller')->group(function(){
         Route::group(['middleware'=>'jwt.user'],function(){
 
         });
@@ -54,7 +54,7 @@ Route::prefix('goodcatch')->group(function(){
      * 商城App端 路由
      *
      */
-    Route::namespace('App')->prefix('App')->group(function(){
+    Route::prefix('App')->namespace('App')->group(function(){
 
         Route::group(['middleware'=>'jwt.user'],function(){
 

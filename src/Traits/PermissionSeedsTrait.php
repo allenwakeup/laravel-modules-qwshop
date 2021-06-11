@@ -36,7 +36,7 @@ trait PermissionSeedsTrait{
      * all of modules api uri should follow it
      * @var string api uri prefix
      */
-    protected $api_prefix = 'goodcatch/admin';
+    protected $api_prefix = 'Admin/goodcatch';
     /**
      * @var array default api resource actions
      */
