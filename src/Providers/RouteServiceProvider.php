@@ -24,8 +24,13 @@ class RouteServiceProvider extends ServiceProvider
     {
         parent::__construct ($app);
 
-        $this->path = __DIR__ . '/../../routes';
+        $this->initRoute ();
 
+    }
+
+    protected function initRoute ()
+    {
+        $this->path = __DIR__ . '/../../routes';
     }
 
     protected function getPath ($name = null)
