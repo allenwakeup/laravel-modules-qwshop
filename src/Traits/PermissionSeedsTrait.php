@@ -59,6 +59,27 @@ trait PermissionSeedsTrait{
     }
 
     /**
+     * generate api uri
+     * @param $module
+     * @param string $path
+     * @return string
+     */
+    protected function getSeedsModuleApiUri ($module, $path = '')
+    {
+        return $this->getSeedsApiUri(module_route_prefix($module)) .  (empty ($path) ? '' : ('/' . $path));
+    }
+
+    /**
+     * generate module group name
+     * @param $name
+     * @param $model_name
+     * @return string
+     */
+    protected function getSeedsModuleMenuGroupName ($name, $model_name){
+        return $name .  (empty ($model_name) ? '' : ('-' . $model_name));
+    }
+
+    /**
      * append other api resource action for permission data
      *
      * @param $name string action
