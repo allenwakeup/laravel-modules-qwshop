@@ -66,7 +66,7 @@ trait PermissionSeedsTrait{
      */
     protected function getSeedsModuleApiUri ($module, $path = '')
     {
-        return $this->getSeedsApiUri(module_route_prefix($module)) .  (empty ($path) ? '' : ('/' . $path));
+        return $this->getSeedsApiUri(module_route_prefix('/' . $module)) .  (empty ($path) ? '' : ('/' . $path));
     }
 
     /**
@@ -102,7 +102,7 @@ trait PermissionSeedsTrait{
     }
 
     /**
-     * @return \string[][]
+     * @return string[][]
      */
     protected function getSeedsApiActions (){
         return $this->api_actions;
@@ -128,10 +128,16 @@ trait PermissionSeedsTrait{
                 ? $permission_group->id
                 : $t_permission_groups->insertGetId(['name' => $group]);
 
-            foreach($resources as $resource){
+            foreach($resources as $resource => $spec_apis_actions){
+                $api_actions = $this->getSeedsApiActions();
+                $resource_name = $spec_apis_actions;
+                if(is_array($spec_apis_actions)){
+                    $api_actions = $spec_apis_actions;
+                    $resource_name = $resource;
+                }
                 $t_permissions = DB::table($this->tb_permissions);
-                foreach($this->getSeedsApiActions() as $action => $data){
-                    $apis = $resource . '.' . $action;
+                foreach($api_actions as $action => $data){
+                    $apis = $resource_name . '.' . $action;
                     $unique = [
                         'apis' => $apis,
                         'pid' => $group_id

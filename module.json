@@ -3,6 +3,7 @@
     "alias": "qwshop",
     "description": "",
     "keywords": [],
+    "priority": 1,
     "order": 0,
     "providers": [
         "Goodcatch\\Modules\\Qwshop\\Providers\\QwshopServiceProvider"
