@@ -64,7 +64,7 @@ trait PermissionSeedsTrait{
      * @param string $path
      * @return string
      */
-    protected function getSeedsModuleApiUri ($module, $path = '')
+    public function getSeedsModuleApiUri ($module, $path = '')
     {
         return $this->getSeedsApiUri(module_route_prefix('/' . $module)) .  (empty ($path) ? '' : ('/' . $path));
     }
@@ -75,7 +75,7 @@ trait PermissionSeedsTrait{
      * @param $model_name
      * @return string
      */
-    protected function getSeedsModuleMenuGroupName ($name, $model_name){
+    public function getSeedsModuleMenuGroupName ($name, $model_name){
         return $name .  (empty ($model_name) ? '' : ('-' . $model_name));
     }
 
