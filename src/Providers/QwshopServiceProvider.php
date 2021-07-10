@@ -2,6 +2,7 @@
 
 namespace Goodcatch\Modules\Qwshop\Providers;
 
+use Goodcatch\Modules\Qwshop\Services\MenuService;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -33,6 +34,10 @@ class QwshopServiceProvider extends ServiceProvider
     {
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(ResourcesServiceProvider::class);
+
+        $this->app->singleton('MenuService', function ($app) {
+            return new MenuService($app);
+        });
     }
 
 

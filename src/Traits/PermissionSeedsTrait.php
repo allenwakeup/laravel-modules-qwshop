@@ -142,12 +142,11 @@ trait PermissionSeedsTrait{
                         'apis' => $apis,
                         'pid' => $group_id
                     ];
-                    if($t_permissions->updateOrInsert($unique, $data)){
-                        $this->addSeedsRolePermissions(
-                            $this->admin_role_id,
-                            $unique
-                        );
-                    }
+                    $t_permissions->updateOrInsert($unique, $data);
+                    $this->addSeedsRolePermissions(
+                        $this->admin_role_id,
+                        $unique
+                    );
                 }
             }
         }
@@ -163,17 +162,16 @@ trait PermissionSeedsTrait{
                     'link' => $link,
                     'pid' => $pid,
                 ];
-                if(DB::table($this->tb_menus)->updateOrInsert($unique, [
+                DB::table($this->tb_menus)->updateOrInsert($unique, [
                     'is_type' => 0,
                     'is_sort' => 0
-                ])){
-                    $children = Arr::get($menu, 'children', []);
-                    $created = DB::table($this->tb_menus)->where($unique)->first();
-                    if(empty($children)){
-                        $this->addSeedsRoleMenus($this->admin_role_id, $created);
-                    }else{
-                        $this->addSeedsMenu($created->id, $children);
-                    }
+                ]);
+                $children = Arr::get($menu, 'children', []);
+                $created = DB::table($this->tb_menus)->where($unique)->first();
+                if(empty($children)){
+                    $this->addSeedsRoleMenus($this->admin_role_id, $created);
+                }else{
+                    $this->addSeedsMenu($created->id, $children);
                 }
             }
         }

@@ -6,6 +6,7 @@
     "priority": 1,
     "order": 0,
     "providers": [
+        "Goodcatch\\Modules\\Qwshop\\Providers\\EventServiceProvider",
         "Goodcatch\\Modules\\Qwshop\\Providers\\QwshopServiceProvider"
     ],
     "aliases": {},
@@ -14,5 +15,6 @@
     ],
     "requires": [],
     "version": "dev-master",
-    "type": 0
+    "type": 0,
+    "minimumCoreVersion": ""
 }
