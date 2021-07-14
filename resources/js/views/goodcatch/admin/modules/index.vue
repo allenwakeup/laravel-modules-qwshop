@@ -4,13 +4,13 @@
         <div class="unline underm"></div>
 
         <div class="admin_table_handle_btn">
-            <a-button @click="$router.push('/goodcatch/admin/modules/form')" type="primary" icon="plus">添加</a-button>
+            <a-button @click="$router.push('/Admin/goodcatch/admin/modules/form')" type="primary" icon="plus">添加</a-button>
             <a-button class="admin_delete_btn" type="danger" icon="delete" @click="del">批量删除</a-button>
         </div>
         <div class="admin_table_list">
             <a-table :columns="columns" :data-source="list" :pagination="false" :row-selection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange }" row-key="id">
                 <span slot="action" slot-scope="rows">
-                    <a-button icon="edit" @click="$router.push('/goodcatch/admin/modules/form/'+rows.id)">编辑</a-button>
+                    <a-button icon="edit" @click="$router.push('/Admin/goodcatch/admin/modules/form/'+rows.id)">编辑</a-button>
                 </span>
             </a-table>
             <div class="admin_pagination" v-if="total>0">
@@ -45,7 +45,7 @@ export default {
               {title:'状态',dataIndex:'status'},
               {title:'创建时间',dataIndex:'created_at'},
               {title:'更新时间',dataIndex:'updated_at'},
-              {title:'操作',key:'id',fixed:'right',scopedSlots: { customRender: 'action' }},
+              {title:'操作',fixed:'right',scopedSlots: { customRender: 'action' }},
           ],
           list:[],
       };
