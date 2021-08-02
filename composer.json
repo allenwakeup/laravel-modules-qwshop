@@ -7,7 +7,7 @@
         {
             "name": "allen",
             "email": "ali@goodcatch.cn",
-            "homepage": "https://www.goodcatch.cn/laravel-modules-qwshop",
+            "homepage": "http://note.goodcatch.cn/it/dev-laravel/laravel-modules/laravel-module-core",
             "role": "Developer"
         }
     ],
@@ -18,7 +18,6 @@
         "goodcatch/laravel-modules": "^0.1.0"
     },
     "require-dev": {
-        "elendev/nexus-composer-push": "^0.4.0",
         "illuminate/support": "^8.0",
         "laravel/framework": "^8.0",
         "laravel/helpers": "^1.1",
@@ -37,34 +36,11 @@
             "Tests\\": "tests/"
         }
     },
-    "extra": {
-        "nexus-push": {
-            "url": "https://repos.goodcatch.cn/repository/composer",
-            "ignore-by-git-attributes": true,
-            "ignore": [
-                "test.php",
-                "auth.json",
-                ".git",
-                ".DS_Store",
-                ".idea/",
-                "/vendor"
-            ]
-        }
-    },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true
     },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://repos.goodcatch.cn/repository/goodcatch-composer-group/"
-        },
-        {
-            "packagist.org": false
-        }
-    ],
     "minimum-stability": "dev",
     "prefer-stable": true
 }
