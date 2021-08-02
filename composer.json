@@ -15,7 +15,7 @@
     "require": {
         "php": ">=7.3",
         "ext-json": "*",
-        "goodcatch/laravel-modules": "^0.1.0"
+        "goodcatch/laravel-modules": "dev-master"
     },
     "require-dev": {
         "illuminate/support": "^8.0",
